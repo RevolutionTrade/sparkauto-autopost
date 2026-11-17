@@ -87,7 +87,7 @@ def ad02_feu():
     arrow = '<svg class="arrow" width="70" height="40" viewBox="0 0 70 40"><path d="M4 20 H58 M44 6 L60 20 L44 34" fill="none" stroke="#30D158" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>'
     body = f'''
     <div class="h">Votre autoradio<br>d’origine est un<br><em>feu rouge.</em></div>
-    <div class="s">CD rayé, pas de GPS, téléphone dans la grille d’aération : votre tableau de bord est à l'arrêt.</div>
+    <div class="s">CD rayé, pas de GPS, téléphone dans la grille d’aération : votre tableau de bord est à l’arrêt.</div>
     {light}{arrow}
     <div class="card"><img class="shot" src="{photo(0)}" {focus(0)}>{chip()}</div>
     <div class="b"><div class="cta">Passez <em>au vert.</em></div>{badge('light', 25)}</div>
