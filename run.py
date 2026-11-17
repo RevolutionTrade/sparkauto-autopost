@@ -222,7 +222,15 @@ def produce(slots, planner, d, cfg, promo, history, outdir):
             for attempt in range(retries + 1):
                 if attempt:
                     cand = planner.pick(kind)
-                it = render_item(rd, cand, d, cfg, promo, outdir, slot, attempt)
+                try:
+                    it = render_item(rd, cand, d, cfg, promo, outdir, slot, attempt)
+                except Exception as e:
+                    if kind != "reel":
+                        raise
+                    log(f"  Reel impossible pour le créneau {slot} ({e}) : remplacé par un visuel statique.")
+                    kind = "static"
+                    cand = planner.pick(kind)
+                    it = render_item(rd, cand, d, cfg, promo, outdir, slot, attempt)
                 seed = int(d.strftime("%Y%m%d")) * 10 + slot
                 cid = caption_id(it["template"])
                 it["cap_ig"] = build_caption(cid, it["vehicle"], "instagram", promo, cfg.get("evergreen_caption"), seed)

@@ -1,9 +1,17 @@
 """Rendu des Reels : capture image par image (animations pilotées) puis encodage MP4 H.264 avec ffmpeg."""
 import os
+import shutil
 import subprocess
 from pathlib import Path
 
-FFMPEG = os.environ.get("FFMPEG", "ffmpeg")
+
+def ffmpeg_exe():
+    """ffmpeg du système, sinon celui fourni par le paquet Python imageio-ffmpeg."""
+    exe = os.environ.get("FFMPEG") or shutil.which("ffmpeg")
+    if exe:
+        return exe
+    import imageio_ffmpeg
+    return imageio_ffmpeg.get_ffmpeg_exe()
 
 
 def render_reel(renderer, html, mp4, dur=10.0, fps=30, cover_ms=9500, key_ms=(1000, 3500, 6000, 9500), w=1080, h=1920, check=None):
@@ -19,7 +27,7 @@ def render_reel(renderer, html, mp4, dur=10.0, fps=30, cover_ms=9500, key_ms=(10
         pg.wait_for_load_state("networkidle")
         pg.wait_for_function("document.body.dataset.ready==='1'", timeout=20000)
         pg.evaluate("document.getAnimations().forEach(a=>a.pause())")
-        cmd = [FFMPEG, "-y", "-loglevel", "error", "-f", "image2pipe", "-framerate", str(fps), "-c:v", "mjpeg", "-i", "-",
+        cmd = [ffmpeg_exe(), "-y", "-loglevel", "error", "-f", "image2pipe", "-framerate", str(fps), "-c:v", "mjpeg", "-i", "-",
                "-f", "lavfi", "-i", "anullsrc=channel_layout=stereo:sample_rate=44100", "-shortest",
                "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-pix_fmt", "yuv420p", "-r", str(fps),
                "-c:a", "aac", "-b:a", "64k", "-movflags", "+faststart", str(mp4)]
