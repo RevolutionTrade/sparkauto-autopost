@@ -24,6 +24,9 @@ class Buffer:
         if not key:
             raise SystemExit("Clé Buffer absente : ajoutez le secret BUFFER_API_KEY dans GitHub "
                              "(Settings > Secrets and variables > Actions).")
+        if "•" in key or "●" in key:
+            raise SystemExit("Le secret BUFFER_API_KEY contient la version masquée de la clé (••••). "
+                             "Dans Buffer, cliquez sur le bouton « Copy key » au lieu de sélectionner le texte affiché.")
         if len(key) > 300 or any(c.isspace() or ord(c) > 126 for c in key):
             raise SystemExit("Le secret BUFFER_API_KEY ne contient pas une clé Buffer valide "
                              f"({len(key)} caractères, avec des espaces ou des accents). "
