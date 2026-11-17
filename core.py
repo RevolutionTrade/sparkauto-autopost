@@ -34,7 +34,7 @@ def ensure_logos():
         img = Image.fromarray(out, "RGBA")
         img.crop(img.getbbox()).save(BRAND / name)
 
-BADGE_TXT = "+250 modèles / 40 marques"
+BADGE_TXT = "+300 modèles / 40 marques"
 
 # Contexte de l'ad en cours (véhicule + photos), fixé par run.py avant chaque rendu
 CTX = {"v": None, "photos": [], "promo": None}
@@ -68,6 +68,7 @@ body{font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;text-rend
 .ph,.card,.c,.R,.so,.bx{position:relative}
 .b250{display:inline-flex;align-items:center;gap:12px;font-family:'Inter';font-weight:800;letter-spacing:-.2px;white-space:nowrap}
 .b250 svg{flex:none}
+.hdr{position:absolute;left:0;right:0;z-index:30;display:flex;justify-content:center;pointer-events:none}
 .vchip{position:absolute;left:16px;bottom:16px;z-index:5;display:inline-flex;align-items:center;gap:8px;background:rgba(10,10,12,.78);color:#fff;
   font:700 21px Inter;letter-spacing:-.1px;padding:9px 15px;border-radius:999px;white-space:nowrap;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 .vchip i{font-style:normal;font-weight:500;opacity:.75}
@@ -148,6 +149,11 @@ def badge(theme="dark", size=26, pad="14px 24px", bg=None, fg=None):
             f'{icon("car", int(size * 1.25), fg, 2.2)}<span>{BADGE_TXT}</span></div>')
 
 
+def header(color="black", top=40, h=44):
+    """En-tête de la charte : logo Spark Auto seul, en haut au centre (blanc, noir ou gris)."""
+    return f'<div class="hdr" style="top:{top}px">{logo(color, h)}</div>'
+
+
 def logo(color="black", h=46, style=""):
     return f'<img src="{logo_src(color)}" style="height:{h}px;width:auto;display:block;{style}">'
 
@@ -170,16 +176,20 @@ class Renderer:
         exe = os.environ.get("CHROME_PATH") or None
         self.browser = self._pw.chromium.launch(executable_path=exe, args=["--allow-file-access-from-files"])
 
-    def render(self, html, out_png, w=1080, h=1350):
+    def render(self, html, out_png, w=1080, h=1350, check=None):
+        """Rend la page en PNG. Si check est fourni, check(page, w, h) est appelé et son résultat renvoyé."""
         f = self.workdir / (Path(out_png).stem + ".html")
         f.write_text(html, encoding="utf-8")
         pg = self.browser.new_page(viewport={"width": w, "height": h}, device_scale_factor=1)
-        pg.goto(f"file://{f}")
-        pg.wait_for_load_state("networkidle")
-        pg.wait_for_function("document.body.dataset.ready==='1'", timeout=20000)
-        pg.wait_for_timeout(200)
-        pg.screenshot(path=str(out_png), clip={"x": 0, "y": 0, "width": w, "height": h})
-        pg.close()
+        try:
+            pg.goto(f"file://{f}")
+            pg.wait_for_load_state("networkidle")
+            pg.wait_for_function("document.body.dataset.ready==='1'", timeout=20000)
+            pg.wait_for_timeout(200)
+            pg.screenshot(path=str(out_png), clip={"x": 0, "y": 0, "width": w, "height": h})
+            return check(pg, w, h) if check else None
+        finally:
+            pg.close()
 
     def close(self):
         self.browser.close()

@@ -61,7 +61,7 @@ def build(template_id, v, platform, promo=None, evergreen=None, seed=0):
             "• Plug & play, 20 minutes environ",
             "• Commandes au volant conservées (versions équipées)",
             "• Garantie 2 ans · aide 7j/7 sur WhatsApp", "",
-            "+250 modèles / 40 marques compatibles. Vérifiez le vôtre sur sparkauto.fr (lien en bio).",
+            "+300 modèles / 40 marques compatibles. Vérifiez le vôtre sur sparkauto.fr (lien en bio).",
         ]
         if offer:
             lines += ["", offer]
@@ -70,7 +70,7 @@ def build(template_id, v, platform, promo=None, evergreen=None, seed=0):
         return "\n".join(lines)
     # TikTok : un seul paragraphe (les retours à la ligne ne passent pas toujours)
     parts = [hook, f"{v['name']}{yrs} : CarPlay & Android Auto sans fil, à la place de l’autoradio d’origine.",
-             "+250 modèles / 40 marques → sparkauto.fr"]
+             "+300 modèles / 40 marques → sparkauto.fr"]
     if offer:
         parts.append(offer)
     tags = BASE_TAGS_TT + vehicle_tags(v)

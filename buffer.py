@@ -73,12 +73,18 @@ class Buffer:
                 out.append(c)
         return out
 
-    def create_post(self, channel_id, service, text, image_url, due_at_iso, draft=False):
+    def create_post(self, channel_id, service, text, media_url, due_at_iso, draft=False, kind="static", thumb_ms=None):
+        """kind = "static" (image) ou "reel" (vidéo : Reel sur Instagram, vidéo sur TikTok)."""
+        if kind == "reel":
+            asset = {"video": {"url": media_url}}
+            if thumb_ms is not None:
+                asset["video"]["metadata"] = {"thumbnailOffset": int(thumb_ms)}
+        else:
+            asset = {"image": {"url": media_url}}
         inp = {"text": text, "channelId": channel_id, "schedulingType": "automatic",
-               "mode": "customScheduled", "dueAt": due_at_iso,
-               "assets": [{"image": {"url": image_url}}]}
+               "mode": "customScheduled", "dueAt": due_at_iso, "assets": [asset]}
         if service == "instagram":
-            inp["metadata"] = {"instagram": {"type": "post", "shouldShareToFeed": True}}
+            inp["metadata"] = {"instagram": {"type": "reel" if kind == "reel" else "post", "shouldShareToFeed": True}}
         if draft:
             inp["saveToDraft"] = True
         try:
@@ -89,8 +95,11 @@ class Buffer:
             if "saveToDraft" in msg and draft:
                 # jamais de publication en mode test : on s'arrête proprement
                 raise BufferError("Le mode brouillon n'est pas accepté par l'API Buffer : test interrompu sans rien publier. " + msg)
+            elif "thumbnailOffset" in msg and kind == "reel":
+                asset["video"].pop("metadata", None)
+                res = self.gql(CREATE, {"input": inp})["createPost"]
             elif "shouldShareToFeed" in msg:
-                inp["metadata"] = {"instagram": {"type": "post"}}
+                inp["metadata"]["instagram"].pop("shouldShareToFeed", None)
                 res = self.gql(CREATE, {"input": inp})["createPost"]
             else:
                 raise

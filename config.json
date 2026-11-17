@@ -1,7 +1,17 @@
 {
   "timezone": "Europe/Paris",
-  "times": ["08:30", "11:30", "13:30", "17:00", "19:30", "21:30"],
-  "platforms": {"instagram": true, "tiktok": true},
+  "times": [
+    "08:30",
+    "11:30",
+    "13:30",
+    "17:00",
+    "19:30",
+    "21:30"
+  ],
+  "platforms": {
+    "instagram": true,
+    "tiktok": true
+  },
   "evergreen_offer": "−10 € avec le code CARPLAY10",
   "evergreen_caption": "Code CARPLAY10 : −10 € sur votre écran.",
   "promos": [
@@ -15,8 +25,22 @@
       "caption": "BLACK FRIDAY : −10 % sur tout le site avec le code BLACKSPARK, jusqu’au 30 novembre."
     }
   ],
-  "buffer": {"instagram_channel_id": "", "tiktok_channel_id": ""},
+  "buffer": {
+    "instagram_channel_id": "",
+    "tiktok_channel_id": ""
+  },
   "media_branch": "media",
   "exclude_templates": [],
-  "exclude_vehicles": []
+  "exclude_vehicles": [],
+  "video_slots": [
+    2,
+    5
+  ],
+  "evaluation": {
+    "model": "claude-haiku-5-5",
+    "min_total": 16,
+    "min_each": 3,
+    "retries": 2,
+    "publish_if_unavailable": true
+  }
 }
