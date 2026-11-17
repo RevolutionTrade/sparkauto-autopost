@@ -303,9 +303,12 @@ def main():
         log(f"Images générées dans {outdir} (aucun envoi).")
         return
 
-    from buffer import Buffer
+    from buffer import Buffer, BufferError
     buf = Buffer(os.environ.get("BUFFER_API_KEY", ""))
-    chans = buf.channels()
+    try:
+        chans = buf.channels()
+    except BufferError as e:
+        raise SystemExit(f"Connexion à Buffer impossible (clé refusée ou API indisponible) : {e}")
     ids = cfg.get("buffer", {})
     def pick(service, key):
         if ids.get(key):

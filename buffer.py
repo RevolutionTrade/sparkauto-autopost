@@ -20,9 +20,15 @@ class BufferError(Exception):
 
 class Buffer:
     def __init__(self, api_key):
-        if not api_key:
-            raise BufferError("BUFFER_API_KEY manquant (secret GitHub non configuré).")
-        self.key = api_key
+        key = (api_key or "").strip()
+        if not key:
+            raise SystemExit("Clé Buffer absente : ajoutez le secret BUFFER_API_KEY dans GitHub "
+                             "(Settings > Secrets and variables > Actions).")
+        if len(key) > 300 or any(c.isspace() or ord(c) > 126 for c in key):
+            raise SystemExit("Le secret BUFFER_API_KEY ne contient pas une clé Buffer valide "
+                             f"({len(key)} caractères, avec des espaces ou des accents). "
+                             "Recréez une clé dans Buffer (Settings > API > New Key) et collez-la seule dans ce secret.")
+        self.key = key
 
     def gql(self, query, variables=None, retries=3):
         body = json.dumps({"query": query, "variables": variables or {}}).encode()
