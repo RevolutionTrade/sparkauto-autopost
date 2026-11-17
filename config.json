@@ -1,0 +1,22 @@
+{
+  "timezone": "Europe/Paris",
+  "times": ["08:30", "11:30", "13:30", "17:00", "19:30", "21:30"],
+  "platforms": {"instagram": true, "tiktok": true},
+  "evergreen_offer": "−10 € avec le code CARPLAY10",
+  "evergreen_caption": "Code CARPLAY10 : −10 € sur votre écran.",
+  "promos": [
+    {
+      "code": "BLACKSPARK",
+      "title": "BLACK FRIDAY",
+      "headline": "−10 % SUR TOUT LE SITE",
+      "from": "2026-11-01",
+      "until": "2026-11-30",
+      "until_label": "Jusqu’au 30 novembre",
+      "caption": "BLACK FRIDAY : −10 % sur tout le site avec le code BLACKSPARK, jusqu’au 30 novembre."
+    }
+  ],
+  "buffer": {"instagram_channel_id": "", "tiktok_channel_id": ""},
+  "media_branch": "media",
+  "exclude_templates": [],
+  "exclude_vehicles": []
+}
