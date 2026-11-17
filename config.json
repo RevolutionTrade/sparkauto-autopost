@@ -32,10 +32,7 @@
   "media_branch": "media",
   "exclude_templates": [],
   "exclude_vehicles": [],
-  "video_slots": [
-    2,
-    5
-  ],
+  "video_slots": [],
   "evaluation": {
     "model": "claude-haiku-5-5",
     "min_total": 16,
