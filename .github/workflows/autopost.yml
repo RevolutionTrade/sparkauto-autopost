@@ -1,0 +1,54 @@
+name: Static ads Spark Auto
+
+on:
+  schedule:
+    # tous les jours à 05:23 UTC (06:23 à Paris l'hiver, 07:23 l'été), avant le 1er post de 08:30
+    - cron: "23 5 * * *"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "test = 1 brouillon dans Buffer (rien n'est publié) · normal = programme les posts du jour · dry-run = images seulement"
+        type: choice
+        options: [test, normal, dry-run]
+        default: test
+
+permissions:
+  contents: write
+
+concurrency:
+  group: autopost
+  cancel-in-progress: false
+
+jobs:
+  autopost:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Installer
+        run: |
+          pip install -r requirements.txt
+          python -m playwright install --with-deps chromium
+          npm install --no-save --no-audit --no-fund --prefix .deps @fontsource/inter@5.3.0 @fontsource/anton@5.3.0 @fontsource/archivo-black@5.3.0 @fontsource/permanent-marker@5.3.0 @fontsource/caveat@5.3.0 @fontsource/kalam@5.3.0 @fontsource/playfair-display@5.3.0 @fontsource/jetbrains-mono@5.3.0 @fontsource/oswald@5.3.0 lucide-static@1.74.0
+
+      - name: Générer et programmer les static ads
+        env:
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python run.py --mode "${{ github.event.inputs.mode || 'normal' }}"
+
+      - name: Aperçu des visuels du jour
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visuels
+          path: |
+            out/**/*.jpg
+            out/**/*.txt
+          retention-days: 14
+          if-no-files-found: ignore
