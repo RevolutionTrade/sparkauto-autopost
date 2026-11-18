@@ -2,18 +2,26 @@ name: Static ads Spark Auto
 
 on:
   schedule:
-    # tous les jours à 05:23 UTC (06:23 à Paris l'hiver, 07:23 l'été), avant le 1er post de 08:30
+    # Passage principal : 05:23 UTC (06:23 à Paris l'hiver, 07:23 l'été), avant le 1er post de 08:30.
     - cron: "23 5 * * *"
+    # Passages de secours : GitHub retarde ou saute parfois un déclenchement programmé.
+    # Chacun ne programme que les créneaux encore libres et à venir (aucun doublon grâce à history.json).
+    - cron: "11 6 * * *"
+    - cron: "37 8 * * *"
+    - cron: "13 13 * * *"
+    # Récapitulatif de la semaine, le lundi à 07:07 UTC (ouvert comme issue GitHub)
+    - cron: "7 7 * * 1"
   workflow_dispatch:
     inputs:
       mode:
-        description: "test = 1 brouillon dans Buffer (rien n'est publié) · normal = programme les posts du jour · dry-run = images seulement"
+        description: "test = brouillons dans Buffer (rien n'est publié) · normal = programme les posts du jour · dry-run = génère et évalue seulement · recap = récap de la semaine"
         type: choice
-        options: [test, normal, dry-run]
+        options: [test, normal, dry-run, recap]
         default: test
 
 permissions:
   contents: write
+  issues: write
 
 concurrency:
   group: autopost
@@ -22,7 +30,7 @@ concurrency:
 jobs:
   autopost:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
 
@@ -36,11 +44,15 @@ jobs:
           python -m playwright install --with-deps chromium
           npm install --no-save --no-audit --no-fund --prefix .deps @fontsource/inter@5.3.0 @fontsource/anton@5.3.0 @fontsource/archivo-black@5.3.0 @fontsource/permanent-marker@5.3.0 @fontsource/caveat@5.3.0 @fontsource/kalam@5.3.0 @fontsource/playfair-display@5.3.0 @fontsource/jetbrains-mono@5.3.0 @fontsource/oswald@5.3.0 lucide-static@1.74.0
 
-      - name: Générer et programmer les static ads
+      - name: Générer, contrôler et programmer les pubs
         env:
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python run.py --mode "${{ github.event.inputs.mode || 'normal' }}"
+        run: |
+          MODE="${{ github.event.inputs.mode || 'normal' }}"
+          if [ "${{ github.event.schedule }}" = "7 7 * * 1" ]; then MODE=recap; fi
+          python run.py --mode "$MODE"
 
       - name: Aperçu des visuels du jour
         if: always()
@@ -49,6 +61,7 @@ jobs:
           name: visuels
           path: |
             out/**/*.jpg
+            out/**/*.mp4
             out/**/*.txt
           retention-days: 14
           if-no-files-found: ignore
