@@ -184,16 +184,17 @@ def tiktok_wrap(ig_jpg, out_jpg):
 def render_item(rd, it, d, cfg, promo, outdir, slot, attempt):
     """Rend un candidat (statique ou Reel) et lance les contrôles automatiques."""
     v = it["vehicle"]
-    photos, foci = [], []
+    photos, foci, screens = [], [], []
     for k, vv in enumerate([v] + it["alts"]):
         urls = vv["photos"]
-        u = urls[(int(d.strftime("%j")) + slot + attempt + k) % len(urls)]
-        fp = fetch_photo(u)
+        n = (int(d.strftime("%j")) + slot + attempt + k) % len(urls)
+        fp = fetch_photo(urls[n])
         photos.append("file://" + str(fp))
         foci.append(screen_focus(fp))
+        screens.append((vv.get("screens") or [None] * len(urls))[n])
     core.CTX.clear()
-    core.CTX.update({"v": v, "vehicles": [v] + it["alts"], "photos": photos, "focus": foci, "promo": promo,
-                     "evergreen": cfg.get("evergreen_offer")})
+    core.CTX.update({"v": v, "vehicles": [v] + it["alts"], "photos": photos, "focus": foci, "screens": screens,
+                     "promo": promo, "evergreen": cfg.get("evergreen_offer")})
     base = f"{d.isoformat()}_{slot:02d}_{it['template']}" + (f"_e{attempt}" if attempt else "")
     if it["kind"] == "reel":
         mp4 = outdir / f"{base}.mp4"

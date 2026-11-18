@@ -12,7 +12,7 @@ KF = """
 @keyframes fade{from{opacity:0}to{opacity:1}}
 @keyframes pop{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:none}}
 @keyframes inl{from{opacity:0;transform:translateX(-70px)}to{opacity:1;transform:none}}
-@keyframes kb{from{transform:scale(1)}to{transform:scale(1.07)}}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.04)}}
 @keyframes on{from{opacity:0}to{opacity:1}} @keyframes off{from{opacity:1}to{opacity:0}}
 @keyframes lit{to{opacity:1}} @keyframes dim{to{opacity:.25}}
 @keyframes strike{from{transform:scaleX(0)}to{transform:scaleX(1)}}
@@ -34,7 +34,7 @@ def reel_feu_rouge():
                 f'<div class="in" style="{anim_i}">{inner}</div></div>')
     css = KF + """
     .ad{background:radial-gradient(90% 55% at 50% 12%,#1d1d21 0%,#0a0a0b 70%)}
-    .h{position:absolute;left:80px;right:60px;top:288px;font-family:Anton;font-size:104px;line-height:1.02;color:#fff;text-transform:uppercase}
+    .h{position:absolute;left:80px;right:60px;top:300px;font-family:Anton;font-size:136px;line-height:1.02;color:#fff;text-transform:uppercase}
     .h span{display:block}
     .s{position:absolute;left:80px;right:140px;top:630px;font:500 34px/1.35 Inter;color:#b8b8bd}
     .tl{position:absolute;left:80px;top:760px;width:220px;height:560px;border-radius:42px;background:linear-gradient(180deg,#1d1d20,#111113);
@@ -46,18 +46,18 @@ def reel_feu_rouge():
     .ph{position:absolute;left:340px;top:780px;width:580px;height:500px;border-radius:30px;overflow:hidden;box-shadow:0 0 0 4px #30D158,0 0 60px rgba(48,209,88,.45)}
     .ph img{width:100%;height:100%}
     .cap{position:absolute;left:340px;width:580px;top:1300px;text-align:center;font:600 24px Inter;color:#8d8d93}
-    .cta{position:absolute;left:80px;top:1352px;font:900 54px Inter;color:#fff;letter-spacing:-.8px}
+    .cta{position:absolute;left:80px;top:1352px;font:900 50px Inter;color:#fff;letter-spacing:-.8px}
     .cta em{font-style:normal;color:#30D158}
     .bd{position:absolute;left:80px;top:1432px}
     """
     body = f'''{header('white', 180, 50)}
-    <div class="h"><span style="{A('up', .45, .1)}">Votre autoradio</span><span style="{A('up', .45, .3)}">d’origine est un</span>
-      <span style="{A('up', .45, .55)};color:#FF3B30">feu rouge.</span></div>
+    <div class="h"><span style="{A('up', .45, .1)}">Autoradio CD :</span>
+      <span style="{A('up', .45, .4)};color:#FF3B30">feu rouge.</span></div>
     <div class="s" style="{A('fade', .6, 1.1, 'ease')}">CD rayé, pas de GPS, téléphone dans la grille d’aération : votre tableau de bord est à l’arrêt.</div>
     <div class="tl" style="{A('inl', .6, 1.6)}">{lens(26, "#FF3B30", icon("disc-3", 80, "#fff", 2.2), 2.0, 3.6)}{lens(205, "#FFB020", "", 99)}{lens(384, "#30D158", icon("smartphone", 76, "#fff", 2.2), 3.9)}</div>
     <div class="ph" style="{A('pop', .55, 4.2, 'cubic-bezier(.2,.9,.25,1.15)')}"><img class="shot" src="{photo(0)}" {focus(0)}><div style="{A('fade', .5, 5.0, 'ease')}">{chip()}</div></div>
     <div class="cap" style="{A('fade', .5, 5.3, 'ease')}">CarPlay &amp; Android Auto sans fil</div>
-    <div class="cta" style="{A('up', .5, 6.0)}">Passez <em>au vert.</em></div>
+    <div class="cta" style="{A('up', .5, 6.0)}">CarPlay sans fil : <em>feu vert.</em></div>
     <div class="bd" style="{A('up', .5, 6.4)}">{badge('light', 30)}</div>
     '''
     return page(body, css, W, H)
@@ -102,9 +102,9 @@ def reel_jauge():
     <div class="t"><div style="{A('up', .45, .1)}">NIVEAU DE</div><div style="{A('up', .45, .3)}">MODERNITÉ</div></div>
     <div class="s" style="{A('fade', .5, .7, 'ease')}">de votre tableau de bord</div>
     <div class="g" style="{A('fade', .5, .9, 'ease')}">{svg}</div>
-    <div class="lab" style="left:110px;top:950px;width:200px;color:#C9322A;{A('up', .4, 1.5)}">Autoradio<br>CD</div>
+    <div class="lab" style="left:150px;top:972px;width:220px;text-align:left;color:#C9322A;{A('up', .4, 1.5)}">Autoradio<br>CD</div>
     <div class="lab" style="left:440px;top:752px;width:200px;color:#B9770E;{A('up', .4, 2.4)}">Support<br>téléphone</div>
-    <div class="lab" style="left:770px;top:950px;width:200px;color:#178A44;{A('up', .4, 3.4)}">CarPlay<br>sans fil</div>
+    <div class="lab" style="left:690px;top:972px;width:220px;text-align:right;color:#178A44;{A('up', .4, 3.4)}">CarPlay<br>sans fil</div>
     <div class="ph" style="{A('pop', .55, 4.2, 'cubic-bezier(.2,.9,.25,1.15)')}"><img class="shot" src="{photo(0)}" {focus(0)}><div style="{A('fade', .5, 5.0, 'ease')}">{chip()}</div></div>
     <div class="tag" style="{A('pop', .45, 4.8)}">Avec un écran Spark Auto</div>
     <div class="bd" style="{A('up', .5, 5.6)}">{badge('dark', 30)}</div>
@@ -149,7 +149,7 @@ def reel_ticket():
     li = "".join(f'<div class="ln"><span>{a}</span><i></i><span class="{"ko" if b == "—" else ""}">{b}</span></div>' for a, b in lines)
     css = KF + """
     .ad{background:radial-gradient(90% 60% at 50% 20%,#24242a 0%,#0c0c0e 75%)}
-    .rc{position:absolute;left:150px;top:286px;width:780px;background:#fbfbf8;transform:rotate(-2deg);box-shadow:0 30px 50px rgba(0,0,0,.5);
+    .rc{position:absolute;left:150px;top:262px;width:780px;background:#fbfbf8;transform:rotate(-2deg);box-shadow:0 30px 50px rgba(0,0,0,.5);
         padding:42px 44px 36px;font-family:'JetBrains Mono';color:#1b1b1b}
     .rc h5{font:800 36px 'JetBrains Mono';text-align:center;letter-spacing:1px;white-space:nowrap}
     .rc .sub{font:500 24px 'JetBrains Mono';text-align:center;color:#555;margin-top:6px}
@@ -158,11 +158,11 @@ def reel_ticket():
     .ln i{flex:1;border-bottom:2px dotted #999;transform:translateY(-6px)}
     .ln .ko{color:#C8102E;font-weight:800}
     .tt{display:flex;justify-content:space-between;font:800 30px 'JetBrains Mono'}
-    .t1{position:absolute;left:80px;right:80px;top:1004px;text-align:center;font:900 40px Inter;color:#fff;letter-spacing:.5px}
-    .t2{position:absolute;left:80px;right:80px;top:1056px;text-align:center;font:800 40px Inter;color:#FFB020;letter-spacing:-.5px}
-    .ph{position:absolute;left:120px;width:760px;top:1126px;height:284px;border-radius:26px;overflow:hidden;box-shadow:0 0 0 3px rgba(255,255,255,.14),0 30px 60px rgba(0,0,0,.6)}
+    .t1{position:absolute;left:80px;right:80px;top:950px;text-align:center;font:900 40px Inter;color:#fff;letter-spacing:.5px}
+    .t2{position:absolute;left:80px;right:80px;top:1002px;text-align:center;font:800 40px Inter;color:#FFB020;letter-spacing:-.5px}
+    .ph{position:absolute;left:120px;width:760px;top:1074px;height:364px;border-radius:26px;overflow:hidden;box-shadow:0 0 0 3px rgba(255,255,255,.14),0 30px 60px rgba(0,0,0,.6)}
     .ph img{width:100%;height:100%}
-    .bd{position:absolute;top:1436px;width:100%;display:flex;justify-content:center}
+    .bd{position:absolute;top:1458px;width:100%;display:flex;justify-content:center}
     """
     body = f'''{header('white', 180, 50)}
     <div class="rc" style="animation:print 2.4s steps(24) .1s both"><h5 class="fit">VOTRE {V("name").upper()}</h5><div class="sub">Équipement d’origine</div>
@@ -203,7 +203,7 @@ def reel_3_etapes():
     .bd{position:absolute;top:1424px;width:100%;display:flex;justify-content:center}
     """
     body = f'''{header('black', 180, 50)}
-    <div class="t" style="{A('up', .5, .1)}">Installer CarPlay, réglé.</div>
+    <div class="t" style="{A('up', .5, .1)}">CarPlay en 3 étapes.</div>
     <div class="s" style="{A('fade', .5, .6, 'ease')}">Plug &amp; play · 20 minutes environ</div>
     <div class="row" style="top:476px;{A('inl', .5, 1.1)}"><div class="bx">{s1}</div><div class="cap"><b>étape 1 :</b>on retire l’autoradio</div></div>
     <div class="row" style="top:712px;{A('inl', .5, 2.1)}"><div class="bx">{s2}</div><div class="cap"><b>étape 2 :</b>on branche le faisceau</div></div>
@@ -217,37 +217,43 @@ def reel_3_etapes():
 
 def reel_probleme_solution():
     lime = "#C6F432"
-    rows = [("map-pin", "Pas de GPS", 0), ("smartphone", "Téléphone dans la grille d’aération", 1), ("disc-3", "Musique sur CD", 2)]
+    rows = [("map-pin", "Pas de GPS dans la voiture", "Waze et Google Maps à l’écran"),
+            ("smartphone", "Le téléphone coincé dans la grille d’aération", "Le téléphone reste dans la poche"),
+            ("disc-3", "La musique encore sur CD", "Spotify et vos playlists à l’écran")]
+    ok = icon("check", 24, "#0F2D27", 3.4)
     tr = ""
-    for k, (ic, t, p) in enumerate(rows):
-        t0 = .9 + k * 1.3
-        tr += (f'<div class="r" style="top:{560 + k * 262}px;{A("inl", .45, t0)}">'
-               f'<div class="pb"><div class="ic">{icon(ic, 46, "#0F2D27", 2)}</div><span>{t}</span></div>'
-               f'<svg class="ar" width="70" height="40" viewBox="0 0 76 40" style="{A("fade", .3, t0 + .4, "ease")}"><path d="M4 20 H60 M46 6 L62 20 L46 34" fill="none" stroke="{lime}" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>'
-               f'<div class="so" style="{A("pop", .45, t0 + .65, "cubic-bezier(.2,.9,.25,1.15)")}"><img class="shot" src="{photo(p)}" {focus(p)}>'
-               f'{chip("font-size:16px;padding:6px 10px;left:8px;bottom:8px", years=False, which=p)}</div></div>')
+    for k, (ic, av, ap) in enumerate(rows):
+        t0 = 1.0 + k * 1.2
+        tr += (f'<div class="r" style="{A("inl", .45, t0)}">'
+               f'<div class="av"><div class="ic">{icon(ic, 36, "#0F2D27", 2)}</div><span>{av}</span></div>'
+               f'<div class="ap" style="{A("pop", .4, t0 + .55, "cubic-bezier(.2,.9,.25,1.15)")}"><div class="ck">{ok}</div><span>{ap}</span></div></div>')
     css = KF + f"""
     .ad{{background:#0F2D27}}
-    .h{{position:absolute;top:290px;width:100%;text-align:center;font:800 64px/1.1 Inter;color:#fff;letter-spacing:-1.4px}}
-    .lbl{{position:absolute;top:478px;left:80px;right:160px;display:flex;justify-content:space-between;font:800 24px Inter;letter-spacing:2px;color:{lime}}}
-    .r{{position:absolute;left:80px;right:160px;height:230px;display:flex;align-items:center;justify-content:space-between;
-        background:#fff;border-radius:26px;padding:0 20px 0 22px}}
-    .pb{{display:flex;align-items:center;gap:16px;width:330px}}
-    .pb span{{font:700 30px/1.2 Inter;color:#0F2D27}}
-    .ic{{width:76px;height:76px;border-radius:50%;background:#EAF5D5;display:flex;align-items:center;justify-content:center;flex:none}}
-    .ar{{flex:none}}
-    .so{{position:relative;width:330px;height:190px;border-radius:16px;overflow:hidden;box-shadow:0 10px 20px rgba(0,0,0,.18)}}
-    .so img{{width:100%;height:100%}}
-    .cta{{position:absolute;left:50%;top:1354px;width:640px;margin-left:-320px;text-align:center;background:{lime};border-radius:999px;padding:22px 0;
-        font:900 32px Inter;color:#0F2D27;box-shadow:0 0 0 6px rgba(198,244,50,.25)}}
-    .bd{{position:absolute;top:1448px;width:100%;display:flex;justify-content:center}}
+    .h{{position:absolute;top:290px;width:100%;text-align:center;font:900 92px/1 Inter;color:#fff;letter-spacing:-2px}}
+    .s{{position:absolute;top:392px;width:100%;text-align:center;font:500 32px Inter;color:#cfe7d9}}
+    .tb{{position:absolute;left:70px;right:150px;top:456px;background:#fff;border-radius:28px;padding:4px 24px 6px}}
+    .hd{{display:flex;justify-content:space-between;padding:14px 0 10px;border-bottom:2px solid #e6ece9;font:800 22px Inter;letter-spacing:2px;color:#5d7a70}}
+    .hd span{{width:390px}} .hd span:last-child{{color:#3f7a14}}
+    .r{{display:flex;align-items:center;justify-content:space-between;height:138px;border-bottom:2px solid #eef2f0}}
+    .r:last-child{{border-bottom:0}}
+    .av,.ap{{display:flex;align-items:center;gap:12px;width:390px}}
+    .av span{{font:600 29px/1.2 Inter;color:#5d6b66}}
+    .ap span{{font:800 29px/1.2 Inter;color:#0F2D27}}
+    .ic{{width:56px;height:56px;border-radius:50%;background:#EEF2F0;display:flex;align-items:center;justify-content:center;flex:none}}
+    .ck{{width:46px;height:46px;border-radius:50%;background:{lime};display:flex;align-items:center;justify-content:center;flex:none}}
+    .ph{{position:absolute;left:80px;width:840px;top:962px;height:370px;border-radius:26px;overflow:hidden;box-shadow:0 20px 40px rgba(0,0,0,.35)}}
+    .ph img{{width:100%;height:100%}}
+    .cta{{position:absolute;left:80px;width:840px;top:1356px;text-align:center;background:{lime};border-radius:999px;padding:20px 0;
+        font:900 30px Inter;color:#0F2D27}}
+    .bd{{position:absolute;top:1440px;left:80px;width:840px;display:flex;justify-content:center}}
     """
     body = f'''{header('white', 180, 50)}
-    <div class="h"><div style="{A('up', .45, .1)}">Besoin d’un tableau</div><div style="{A('up', .45, .3)}">de bord moderne ?</div></div>
-    <div class="lbl" style="{A('fade', .4, .6, 'ease')}"><span>PROBLÈME</span><span style="width:330px;text-align:center">SOLUTION</span></div>
-    {tr}
-    <div class="cta" style="{A('pop', .45, 5.2)}">VÉRIFIER MA COMPATIBILITÉ</div>
-    <div class="bd" style="{A('up', .5, 5.7)}">{badge('light', 28)}</div>
+    <div class="h" style="{A('up', .45, .1)}">Avant / Après</div>
+    <div class="s" style="{A('fade', .4, .5, 'ease')}">avec un écran CarPlay &amp; Android Auto sans fil</div>
+    <div class="tb" style="{A('fade', .4, .7, 'ease')}"><div class="hd"><span>AVANT</span><span>APRÈS</span></div>{tr}</div>
+    <div class="ph" style="{A('pop', .55, 4.6, 'cubic-bezier(.2,.9,.25,1.15)')}"><img class="shot" src="{photo(0)}" {focus(0)}><div style="{A('fade', .5, 5.2, 'ease')}">{chip()}</div></div>
+    <div class="cta" style="{A('pop', .45, 5.6)}">VÉRIFIER MA COMPATIBILITÉ</div>
+    <div class="bd" style="{A('up', .5, 6.0)}">{badge('light', 28)}</div>
     '''
     return page(body, css, W, H)
 

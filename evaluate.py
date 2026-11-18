@@ -50,6 +50,48 @@ CHECK_JS = r"""
       if (w * h > 0.25 * small) issues.push('textes qui se chevauchent : « ' + a.textContent.trim().slice(0, 25) + ' » / « ' + b.textContent.trim().slice(0, 25) + ' »');
     }
   }
+  // cadrage : l'écran CarPlay de chaque photo doit être entièrement visible dans son cadre
+  for (const im of document.querySelectorAll('img.shot')) {
+    if (!vis(im) || !im.dataset.vis) continue;
+    const v = parseFloat(im.dataset.vis);
+    if (v < 0.985) issues.push('écran CarPlay coupé (' + Math.round(v * 100) + ' % visible)');
+  }
+  // occultation : aucun texte, carte ou pastille ne doit recouvrir l'écran CarPlay (tolérance 3 %)
+  const opaque = el => {
+    const cs = getComputedStyle(el);
+    if (cs.visibility === 'hidden' || parseFloat(cs.opacity) < 0.3) return false;
+    const m = cs.backgroundColor.match(/rgba?\(([^)]+)\)/);
+    if (m) { const p = m[1].split(',').map(parseFloat); if ((p.length < 4 ? 1 : p[3]) >= 0.5) return true; }
+    if (['IMG', 'CANVAS', 'VIDEO'].includes(el.tagName)) return true;
+    if (el instanceof SVGElement && el.tagName.toLowerCase() !== 'svg') return true;
+    return false;
+  };
+  const onText = (el, x, y) => {
+    for (const n of el.childNodes) {
+      if (n.nodeType !== 3 || !n.textContent.trim()) continue;
+      const rg = document.createRange(); rg.selectNodeContents(n);
+      for (const r of rg.getClientRects()) if (x >= r.left && x <= r.right && y >= r.top && y <= r.bottom) return true;
+    }
+    return false;
+  };
+  for (const im of document.querySelectorAll('img.shot')) {
+    if (!vis(im) || !im.dataset.scr) continue;
+    const fr = (im.dataset.mode === 'fit' ? im.parentElement : im).getBoundingClientRect();
+    const [a0, b0, a1, b1] = im.dataset.scr.split(',').map(parseFloat);
+    const L = Math.max(fr.left + a0, 0), T = Math.max(fr.top + b0, 0), Rr = Math.min(fr.left + a1, W), B = Math.min(fr.top + b1, H);
+    if (Rr - L < 20 || B - T < 20) continue;
+    let tot = 0, hid = 0; const who = {};
+    for (let i = 0; i < 16; i++) for (let j = 0; j < 10; j++) {
+      const x = L + (Rr - L) * (0.03 + 0.94 * i / 15), y = T + (B - T) * (0.03 + 0.94 * j / 9);
+      tot++;
+      for (const el of document.elementsFromPoint(x, y)) {
+        if (el === im) break;
+        if (el.contains(im) || el.classList.contains('shotbg')) continue;
+        if (opaque(el) || onText(el, x, y)) { hid++; const k = (el.className && el.className.baseVal === undefined ? el.className : el.tagName) || el.tagName; who[k] = (who[k] || 0) + 1; break; }
+      }
+    }
+    if (hid / tot > 0.03) issues.push('écran CarPlay masqué à ' + Math.round(100 * hid / tot) + ' % (' + Object.keys(who).join(', ') + ')');
+  }
   // logo Spark Auto en haut, centré, blanc / noir / gris
   const logos = [...document.querySelectorAll('img')].filter(i => /logo_(white|black|gray)\.png/.test(i.src) && vis(i));
   const top = logos.filter(i => { const r = R(i); return Math.abs((r.left + r.right) / 2 - W / 2) < 40 && r.top < H * 0.2; });
@@ -72,14 +114,15 @@ GRID = """Tu es directeur artistique et responsable acquisition de Spark Auto (s
 Évalue cette publicité {kind} pour Instagram et TikTok (organique), destinée à un conducteur français sur mobile.
 
 Note chaque critère de 1 à 5 (5 = excellent) :
-- esthetisme : composition, hiérarchie, lisibilité, aucun texte coupé ni chevauchement, photo nette et bien cadrée sur l'écran CarPlay.
-- comprehension : en 2 secondes sur mobile, on comprend le produit et pour quelle voiture.
+- esthetisme : composition, hiérarchie, lisibilité, aucun texte coupé ni chevauchement, photo nette ; l'écran CarPlay est entièrement visible, idéalement avec une partie du tableau de bord.
+- comprehension : en 2 secondes sur mobile, on comprend le produit et pour quelle voiture ; chaque phrase se lit naturellement, sans formulation bizarre ou ambiguë.
 - interet : l'accroche arrête le scroll{recent}.
 - conversion : bénéfice clair, appel à l'action, cohérence entre le visuel et la légende.
 
 Critères éliminatoires (liste ceux qui s'appliquent, sinon liste vide) :
 "pas d'écran CarPlay visible", "écran CarPlay pas en français", "badge +300 modèles / 40 marques absent", "logo Spark Auto absent en haut au centre",
 "prix affiché", "faute d'orthographe ou de typographie française", "photo incohérente avec le véhicule annoncé ({vehicle})",
+"écran CarPlay coupé ou photo mal cadrée", "formulation bizarre, peu naturelle ou ambiguë (dans le visuel ou la légende)",
 "information invraisemblable ou non vérifiable".
 Informations autorisées (présentes sur le site) : CarPlay et Android Auto sans fil, écran tactile HD, installation à la place de l'autoradio d'origine sans découpe ni soudure, plug & play en 20 minutes environ, commandes au volant conservées sur les versions équipées, caméra de recul compatible, cadre / faisceau / outils fournis, garantie 2 ans, aide 7j/7 sur WhatsApp, +300 modèles / 40 marques, codes promo indiqués.
 

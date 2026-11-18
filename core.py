@@ -77,16 +77,73 @@ body{font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;text-rend
 # Ajuste automatiquement la taille des textes marqués .fit pour qu'ils tiennent dans leur boîte
 FIT_JS = """
 <script>
+// Cadrage des photos : l'écran CarPlay (rectangle data-sb, en fractions de la photo) est toujours entier et
+// centré, avec le plus de recul possible (on voit le tableau de bord). Si le cadre est trop étroit pour
+// montrer l'écran entier, la photo dézoome et le fond est rempli par la même photo floutée.
 const imgs=[...document.querySelectorAll('img.shot[data-fx]')];
+// bords de la photo adoucis sur 3 % seulement : l'écran (parfois proche du bord de la photo) reste net
+const FEATHER='linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent),linear-gradient(180deg,transparent,#000 3%,#000 97%,transparent)';
 Promise.all([document.fonts.ready, ...imgs.map(i=>i.decode().catch(()=>{}))]).then(()=>{
   imgs.forEach(img=>{
     const cw=img.clientWidth, ch=img.clientHeight, nw=img.naturalWidth, nh=img.naturalHeight;
     if(!cw||!ch||!nw||!nh) return;
-    const s=Math.max(cw/nw, ch/nh), w=nw*s, h=nh*s;
-    const tx=parseFloat(img.dataset.tx||0.5), ty=parseFloat(img.dataset.ty||0.46);
-    let ox=cw*tx-(+img.dataset.fx/100)*w, oy=ch*ty-(+img.dataset.fy/100)*h;
-    ox=Math.min(0,Math.max(cw-w,ox)); oy=Math.min(0,Math.max(ch-h,oy));
-    img.style.objectPosition=ox+'px '+oy+'px';
+    const sb=(img.dataset.sb||'').split(',').map(Number);
+    const has=sb.length===4 && sb.every(x=>!isNaN(x));
+    const [x0,y0,x1,y1]=has?sb:[+img.dataset.fx/100,+img.dataset.fy/100,+img.dataset.fx/100,+img.dataset.fy/100];
+    const bw=(x1-x0)*nw, bh=(y1-y0)*nh, m=0.06;
+    // zone où l'écran doit tenir : marge de 6 % + zones réservées (data-safe = haut,droite,bas,gauche en px)
+    const sf=(img.dataset.safe||'0,0,0,0').split(',').map(Number);
+    let mt=Math.max(m*ch,sf[0]), mr=Math.max(m*cw,sf[1]), mb=Math.max(m*ch,sf[2]), ml=Math.max(m*cw,sf[3]);
+    // la pastille véhicule du même cadre ne doit pas recouvrir l'écran : on réserve sa bande
+    const fr=img.parentElement;
+    if(fr.querySelectorAll('img.shot').length===1){
+      const chip=fr.querySelector('.vchip');
+      if(chip && chip.offsetHeight){
+        let y=0, el=chip; while(el && el!==fr){ y+=el.offsetTop; el=el.offsetParent; }
+        if(el===fr){ if(y+chip.offsetHeight/2>ch/2) mb=Math.max(mb,ch-y+8); else mt=Math.max(mt,y+chip.offsetHeight+8); }
+      }
+    }
+    if(cw-ml-mr<cw*0.4){ ml=mr=m*cw; } if(ch-mt-mb<ch*0.3){ mt=mb=m*ch; }
+    const sCover=Math.max(cw/nw, ch/nh);
+    const sFit=has?Math.min((cw-ml-mr)/bw, (ch-mt-mb)/bh):Infinity;
+    const s=Math.min(sCover, sFit), w=nw*s, h=nh*s;
+    const cx=(x0+x1)/2*w, cy=(y0+y1)/2*h;
+    // point visé : (tx,ty) s'il est imposé, sinon le centre de la zone libre
+    const gx=img.dataset.tx?cw*parseFloat(img.dataset.tx):ml+(cw-ml-mr)/2;
+    const gy=img.dataset.ty?ch*parseFloat(img.dataset.ty):mt+(ch-mt-mb)/2;
+    // position : l'écran dans sa zone (priorité absolue), et si possible la photo sans vide autour
+    const place=(o,lo,hi,len,full)=>{
+      if(lo>hi){ lo=hi=(lo+hi)/2; }
+      const A=full>=len?len-full:0, B=full>=len?0:len-full, L=Math.max(lo,A), H=Math.min(hi,B);
+      return L<=H ? Math.max(L,Math.min(H,o)) : Math.max(lo,Math.min(hi,o));
+    };
+    const ox=place(gx-cx, ml-x0*w, cw-mr-x1*w, cw, w);
+    const oy=place(gy-cy, mt-y0*h, ch-mb-y1*h, ch, h);
+    const covers=s>=sCover-1e-6 && ox<=0.5 && oy<=0.5 && ox+w>=cw-0.5 && oy+h>=ch-0.5;
+    if(covers){
+      img.style.objectPosition=ox+'px '+oy+'px';
+      img.dataset.mode='cover';
+    } else {
+      // l'image ne couvre plus le cadre : on garde l'écran entier et on comble avec un fond flou
+      const bg=document.createElement('div');
+      bg.className='shotbg';
+      bg.style.cssText=`position:absolute;inset:-40px;background:url("${img.src}") center/cover;filter:blur(28px) brightness(.55)`;
+      img.parentNode.insertBefore(bg,img);
+      const pcs=getComputedStyle(img.parentNode);
+      if(pcs.position==='static') img.parentNode.style.position='relative';
+      if(pcs.overflow==='visible') img.parentNode.style.overflow='hidden';
+      for(const [k,v] of Object.entries({position:'absolute',left:ox+'px',top:oy+'px',width:w+'px',height:h+'px',
+          'max-width':'none','object-fit':'fill',
+          '-webkit-mask-image':FEATHER,'mask-image':FEATHER,'-webkit-mask-composite':'source-in','mask-composite':'intersect'}))
+        img.style.setProperty(k,v,'important');
+      img.dataset.mode='fit';
+    }
+    img.style.transformOrigin=(ox+cx)+'px '+(oy+cy)+'px';
+    // part de l'écran visible dans le cadre (contrôle qualité)
+    const L=Math.max(0,ox+x0*w), T=Math.max(0,oy+y0*h), R=Math.min(cw,ox+x1*w), B=Math.min(ch,oy+y1*h);
+    img.dataset.vis=has?(Math.max(0,R-L)*Math.max(0,B-T)/((x1-x0)*w*(y1-y0)*h)).toFixed(3):'';
+    // rectangle de l'écran, relatif au cadre (pour le contrôle d'occultation)
+    if(has) img.dataset.scr=[ox+x0*w,oy+y0*h,ox+x1*w,oy+y1*h].map(v=>v.toFixed(1)).join(',');
   });
   document.querySelectorAll('.fit').forEach(el=>{
     let fs=parseFloat(getComputedStyle(el).fontSize), min=fs*0.55;
@@ -105,11 +162,17 @@ def photo(i=0):
     return ph[i % len(ph)]
 
 
-def focus(i=0, tx=None, ty=None):
+def focus(i=0, tx=None, ty=None, safe=None):
     """Attributs data-* : le JS centre automatiquement l'écran CarPlay de la photo dans son cadre."""
     fs = CTX.get("focus") or []
     fx, fy = fs[i % len(fs)] if fs else (50, 40)
+    sbs = CTX.get("screens") or []
+    sb = sbs[i % len(sbs)] if sbs else None
+    if sb:  # rectangle de l'écran connu : on vise son centre
+        fx, fy = round((sb[0] + sb[2]) * 50), round((sb[1] + sb[3]) * 50)
     extra = (f' data-tx="{tx}"' if tx is not None else "") + (f' data-ty="{ty}"' if ty is not None else "")
+    extra += f' data-sb="{",".join(str(x) for x in sb)}"' if sb else ""
+    extra += f' data-safe="{",".join(str(x) for x in safe)}"' if safe else ""  # zones réservées (px) : haut, droite, bas, gauche
     return f'data-fx="{fx}" data-fy="{fy}"{extra}'
 
 

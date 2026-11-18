@@ -74,23 +74,23 @@ def ad02_feu():
              + "</div>")
     css = """
     .ad{background:radial-gradient(90% 60% at 50% 0%,#1a1a1d 0%,#0a0a0b 70%)}
-    .h{position:absolute;top:118px;left:70px;right:40px;font-family:Anton;font-size:100px;line-height:1;color:#fff;letter-spacing:.5px;text-transform:uppercase}
+    .h{position:absolute;top:130px;left:70px;right:40px;font-family:Anton;font-size:128px;line-height:1;color:#fff;letter-spacing:.5px;text-transform:uppercase}
     .h em{font-style:normal;color:#FF3B30}
     .s{position:absolute;top:436px;left:70px;right:120px;font:500 30px/1.35 Inter;color:#b8b8bd}
     .card{position:absolute;left:400px;top:588px;width:600px;height:548px;border-radius:30px;overflow:hidden;box-shadow:0 0 0 4px #30D158,0 0 60px rgba(48,209,88,.45)}
     .card img{width:100%;height:100%;object-position:50% 40%}
     .arrow{position:absolute;left:338px;top:1040px}
     .b{position:absolute;bottom:44px;left:70px;right:70px;display:flex;align-items:center;justify-content:space-between}
-    .cta{font:900 40px Inter;color:#fff;letter-spacing:-.5px}
+    .cta{font:900 36px Inter;color:#fff;letter-spacing:-.5px}
     .cta em{font-style:normal;color:#30D158}
     """
     arrow = '<svg class="arrow" width="70" height="40" viewBox="0 0 70 40"><path d="M4 20 H58 M44 6 L60 20 L44 34" fill="none" stroke="#30D158" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>'
     body = f'''{header('white', 40)}
-    <div class="h">Votre autoradio<br>d’origine est un<br><em>feu rouge.</em></div>
+    <div class="h">Autoradio CD :<br><em>feu rouge.</em></div>
     <div class="s">CD rayé, pas de GPS, téléphone dans la grille d’aération : votre tableau de bord est à l’arrêt.</div>
     {light}{arrow}
     <div class="card"><img class="shot" src="{photo(0)}" {focus(0)}>{chip()}</div>
-    <div class="b"><div class="cta">Passez <em>au vert.</em></div>{badge('light', 25)}</div>
+    <div class="b"><div class="cta">CarPlay sans fil : <em>feu vert.</em></div>{badge('light', 25)}</div>
     <div style="position:absolute;left:400px;top:1152px;width:600px;text-align:center;font:600 22px Inter;color:#8d8d93">CarPlay &amp; Android Auto sans fil · Spark Auto</div>
     '''
     return page(body, css, W, H)
@@ -170,10 +170,10 @@ def ad04_split():
     .L{position:absolute;left:0;top:112px;width:540px;height:1078px;background:linear-gradient(180deg,#F3EFFA,#E4DCF3)}
     .R{position:absolute;left:540px;top:112px;width:540px;height:1078px;overflow:hidden;background:#111}
     .R img{width:100%;height:100%;object-position:50% 40%}
-    .R:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.0) 45%,rgba(0,0,0,.82) 82%)}
+    .R:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 61%,rgba(0,0,0,.9) 67%)}
     .pill{position:absolute;top:40px;background:#fff;border-radius:26px;padding:22px 30px;font:800 34px Inter;color:#14121a;box-shadow:0 14px 30px rgba(40,20,80,.15);letter-spacing:-.5px;z-index:2}
     .il{position:absolute;left:60px;top:180px}
-    .cap{position:absolute;left:52px;right:40px;top:712px;z-index:2}
+    .cap{position:absolute;left:52px;right:40px;top:730px;z-index:2}
     .cap h3{font:900 40px Inter;letter-spacing:-.8px;margin-bottom:22px}
     .li{display:flex;gap:14px;align-items:center;font:600 28px Inter;margin:0 0 14px}
     .vs{position:absolute;left:540px;top:600px;transform:translate(-50%,-50%);width:110px;height:110px;border-radius:50%;background:#0B0B0C;color:#fff;font:900 36px Inter;display:flex;align-items:center;justify-content:center;border:6px solid #fff;z-index:3}
@@ -182,7 +182,7 @@ def ad04_split():
     body = f'''{header('white', 34)}
     <div class="L"><div class="pill" style="left:52px">La fausse<br>bonne idée</div><div class="il">{illu}</div>
       <div class="cap" style="color:#1d1a26"><h3>Support téléphone</h3>{ko("Tombe dans les virages")}{ko("Câble qui traîne")}{ko("Petit écran, hors de vue")}</div></div>
-    <div class="R"><img class="shot" src="{photo(0)}" {focus(0)}>{chip("left:52px;bottom:auto;top:200px")}<div class="pill" style="left:52px">La vraie<br>solution</div>
+    <div class="R"><img class="shot" src="{photo(0)}" {focus(0, safe=(0, 0, 428, 66))}>{chip("left:52px;bottom:auto;top:200px")}<div class="pill" style="left:52px">La vraie<br>solution</div>
       <div class="cap" style="color:#fff"><h3>Écran CarPlay intégré</h3>{okk("Sans fil, connexion auto")}{okk("À la place de l’autoradio")}{okk("Écran tactile HD")}</div></div>
     <div class="vs">VS</div>
     <div class="F" style="justify-content:center">{badge('light', 25)}</div>
@@ -329,7 +329,7 @@ def ad11_venn():
     """
     body = f'''{header('black', 46)}
     <div class="wb"></div>
-    <div class="box">Garantie 2 ans + aide 7j/7</div>
+    <div class="box">Le meilleur des deux mondes</div>
     {svg}
     <div class="hw" style="left:160px;top:560px;width:240px;font-size:62px;font-weight:700">La voiture que vous aimez</div>
     <div class="hw" style="left:190px;top:790px;width:205px;font-size:36px;font-weight:600">celle que vous ne voulez pas changer</div>
@@ -405,7 +405,7 @@ def ad13_etapes():
     .f{position:absolute;bottom:62px;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:26px}
     """
     body = f'''{header('black', 40)}
-    <div class="t">Installer CarPlay, réglé.</div>
+    <div class="t">CarPlay en 3 étapes.</div>
     <div class="s">Plug &amp; play · 20 minutes environ</div>
     <div class="cards">
       <div class="cd"><div class="bx">{s1}</div><div class="cap">étape 1 :<br>on retire l’autoradio</div></div>
@@ -436,7 +436,7 @@ def ad14_julien():
     .fg{position:absolute;left:30px;top:112px}
     .tx{position:absolute;left:430px;right:56px;top:116px}
     .tx h2{font:900 56px Inter;letter-spacing:-1.5px;color:#0B0B0C;margin-bottom:22px}
-    .tx p{font:400 28px/1.36 Inter;color:#1a1a1e;margin-bottom:20px}
+    .tx p{font:400 32px/1.36 Inter;color:#1a1a1e;margin-bottom:24px}
     .tx p i{font-style:italic}
     .dl{position:absolute;left:470px;right:50px;top:850px;font:900 italic 60px/1.08 Inter;letter-spacing:-2px;color:#0B0B0C}
     .ph{position:absolute;left:44px;top:706px;width:380px;height:400px;border-radius:24px;overflow:hidden;transform:rotate(-2deg);box-shadow:0 20px 40px rgba(0,0,0,.25)}
@@ -448,10 +448,9 @@ def ad14_julien():
     <div class="fg">{fig}</div>
     <div class="tx"><h2>Voici Julien.</h2>
       <p>Julien adore sa {V("name")}. <i>Vraiment.</i></p>
-      <p>Julien roule avec son téléphone coincé dans la grille d’aération. Il tombe à chaque rond-point.</p>
-      <p>Julien rate une sortie sur deux parce que l’écran du téléphone est trop petit.</p>
+      <p>Mais son téléphone, coincé dans la grille d’aération, tombe à chaque rond-point.</p>
       <p>Julien pense qu’il faut changer de voiture pour avoir CarPlay.</p>
-      <p>Julien ne sait pas qu’un écran sur mesure s’installe en 20 minutes environ, à la place de son autoradio.</p></div>
+      <p>Pourtant, un écran sur mesure s’installe en 20 minutes environ, à la place de l’autoradio.</p></div>
     <div class="ph"><img class="shot" src="{photo(0)}" {focus(0)}>{chip()}</div>
     <div class="dl">Ne soyez pas<br>comme Julien.</div>
     <div class="bar"><span>Vérifiez votre modèle<br>sur sparkauto.fr</span>{badge('light', 25)}</div>
@@ -484,8 +483,8 @@ def ad15_age():
     body = f'''{header('black', 44)}
     <div class="fr"></div>
     <div class="h fit" data-h="170">{age_line()}</div>
-    <div class="a">Un jour, un autoradio CD…</div>
-    <div class="b">Le lendemain ? CarPlay sans fil.</div>
+    <div class="a">Avant : un autoradio CD.</div>
+    <div class="b">Après : CarPlay sans fil.</div>
     <div class="ph"><img class="shot" src="{photo(0)}" {focus(0)}>{chip()}</div>
     <div class="st">{stamp}</div>
     <div class="f">{badge('dark', 25)}</div>
@@ -546,7 +545,7 @@ def ad17_nachetez():
     {arr(150, 942, 140, 110, "M30 104 C 30 60, 60 30, 120 14", "M96 2 L122 14 L98 34")}
     <div class="c" style="left:30px;top:1058px;width:420px">Le téléphone<br>reste dans la poche</div>
     {arr(770, 942, 140, 110, "M100 104 C 100 60, 70 30, 18 14", "M42 2 L16 14 L40 34")}
-    <div class="c" style="left:640px;top:1058px;width:400px">Une voiture<br>qui fait neuve</div>
+    <div class="c" style="left:640px;top:1058px;width:400px">Un tableau de bord<br>comme neuf</div>
     <div class="f">{badge('dark', 25)}</div>
     '''
     return page(body, css, W, H)
@@ -574,18 +573,15 @@ def ad18_doigt():
     .ck{position:absolute;right:14px;top:14px;width:38px;height:38px;border-radius:50%;background:#B0185C;display:flex;align-items:center;justify-content:center}
     .q{position:absolute;left:66px;top:852px;width:520px;font:600 36px/1.2 'Playfair Display';color:#222}
     .q b{display:block;margin-top:14px;font:700 46px/1.1 'Playfair Display';color:#B0185C}
-    .p1,.p2{position:absolute;width:330px;height:300px;border-radius:22px;overflow:hidden;box-shadow:0 20px 40px -10px rgba(0,0,0,.4);border:5px solid #fff}
-    .p1{left:600px;top:818px;transform:rotate(-4deg)}
-    .p2{left:700px;top:918px;transform:rotate(5deg)}
-    .p1 img,.p2 img{width:100%;height:100%;object-position:50% 40%}
+    .p2{position:absolute;left:606px;top:836px;width:410px;height:330px;border-radius:22px;overflow:hidden;box-shadow:0 20px 40px -10px rgba(0,0,0,.4);border:5px solid #fff;transform:rotate(3deg)}
+    .p2 img{width:100%;height:100%}
     .f{position:absolute;left:66px;bottom:60px;display:flex;align-items:center;gap:24px}
     """
     body = f'''{header('black', 40)}
     <div class="h">Baissez un doigt</div>
-    <div class="s">si votre voiture a plus de 10 ans (édition autoradio)</div>
+    <div class="s">si votre voiture a plus de 10 ans</div>
     <div class="gr">{cards}</div>
     <div class="q">Vous avez baissé 3 doigts ou plus ?<b>C’est l’autoradio qu’il faut changer.</b></div>
-    <div class="p1"><img class="shot" src="{photo(1)}" {focus(1)}></div>
     <div class="p2"><img class="shot" src="{photo(0)}" {focus(0)}>{chip("font-size:17px;padding:7px 12px;left:10px;bottom:10px", years=False)}</div>
     <div class="f">{badge('dark', 24)}</div>
     '''
@@ -685,7 +681,7 @@ def ad21_callouts():
         return f'<div class="co" style="left:{x}px;top:{y}px;width:{w}px">{t}</div>'
     css = """
     .bgimg{position:absolute;left:0;top:0;width:100%;height:100%}
-    .ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,0) 22%,rgba(0,0,0,0) 50%,rgba(0,0,0,.78) 64%,rgba(0,0,0,.92) 100%)}
+    .ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,0) 18%,rgba(0,0,0,0) 58%,rgba(0,0,0,.8) 63%,rgba(0,0,0,.92) 100%)}
     .hd{position:absolute;left:50%;transform:translateX(-50%);top:112px;background:#fff;border-radius:22px;padding:18px 30px;text-align:center;box-shadow:0 14px 30px rgba(0,0,0,.3);width:900px}
     .hd b{display:block;font:800 40px/1.15 Inter;color:#111;letter-spacing:-.6px}
     .hd span{display:block;font:600 30px Inter;color:#444;margin-top:6px}
@@ -696,7 +692,7 @@ def ad21_callouts():
     .f{position:absolute;bottom:40px;left:40px;right:40px;display:flex;justify-content:flex-end;align-items:center}
     """
     body = f'''{header('white', 40)}
-    <img class="shot bgimg" src="{photo(0)}" {focus(0, 0.5, 0.36)}><div class="ov"></div>{chip("left:auto;right:40px;bottom:auto;top:296px")}
+    <img class="shot bgimg" src="{photo(0)}" {focus(0, safe=(300, 0, 520, 0))}><div class="ov"></div>{chip("left:auto;right:40px;bottom:auto;top:780px")}
     <div class="hd"><b>Encore le téléphone dans la grille d’aération ?</b><span>Voici ce que vous ratez :</span></div>
     {co(40, 840, 470, "CarPlay &amp; Android Auto sans fil<small>Reconnexion auto à chaque démarrage</small>")}
     {co(570, 840, 470, "Écran tactile HD<small>À la place de l’autoradio, sans découpe</small>")}
@@ -712,30 +708,37 @@ def ad21_callouts():
 def ad22_probleme():
     W, H = 1080, 1350
     lime = "#C6F432"
-    rows = [("map-pin", "Pas de GPS", 0), ("smartphone", "Téléphone dans la grille d’aération", 1),
-            ("disc-3", "Musique sur CD", 2)]
-    arrow = f'<svg width="76" height="40" viewBox="0 0 76 40"><path d="M4 20 H60 M46 6 L62 20 L46 34" fill="none" stroke="{lime}" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>'
-    tr = "".join(f'<div class="r"><div class="pb"><div class="ic">{icon(i, 44, "#0F2D27", 2)}</div><span>{t}</span></div>{arrow}<div class="so" style="position:relative"><img class="shot" src="{photo(p)}" {focus(p)}>{chip("font-size:15px;padding:6px 10px;left:8px;bottom:8px", years=False, which=p)}</div></div>' for i, t, p in rows)
+    rows = [("map-pin", "Pas de GPS dans la voiture", "Waze et Google Maps à l’écran"),
+            ("smartphone", "Le téléphone coincé dans la grille d’aération", "Le téléphone reste dans la poche"),
+            ("disc-3", "La musique encore sur CD", "Spotify et vos playlists à l’écran")]
+    ok = icon("check", 22, "#0F2D27", 3.4)
+    arrow = f'<svg width="54" height="30" viewBox="0 0 76 40"><path d="M4 20 H60 M46 6 L62 20 L46 34" fill="none" stroke="#0F2D27" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+    tr = "".join(f'<div class="r"><div class="av"><div class="ic">{icon(i, 34, "#0F2D27", 2)}</div><span>{a}</span></div>{arrow}'
+                 f'<div class="ap"><div class="ck">{ok}</div><span>{b}</span></div></div>' for i, a, b in rows)
     css = f"""
     .ad{{background:#0F2D27}}
-    .lg{{position:absolute;top:56px;width:100%;display:flex;justify-content:center}}
-    .h{{position:absolute;top:128px;width:100%;text-align:center;font:800 58px/1.1 Inter;color:#fff;letter-spacing:-1.2px}}
-    .tb{{position:absolute;left:70px;right:70px;top:300px;background:#fff;border-radius:30px;padding:10px 34px 16px}}
-    .hd{{display:flex;justify-content:space-between;padding:18px 6px 14px;border-bottom:2px solid #e6ece9;font:800 26px Inter;letter-spacing:2px;color:#0F2D27}}
-    .hd span:last-child{{width:330px;text-align:center}}
-    .r{{display:flex;align-items:center;justify-content:space-between;padding:22px 0;border-bottom:2px solid #eef2f0}}
+    .h{{position:absolute;top:118px;width:100%;text-align:center;font:900 68px/1 Inter;color:#fff;letter-spacing:-1.5px}}
+    .s{{position:absolute;top:200px;width:100%;text-align:center;font:500 30px Inter;color:#cfe7d9}}
+    .tb{{position:absolute;left:70px;right:70px;top:262px;background:#fff;border-radius:30px;padding:6px 28px 8px}}
+    .hd{{display:flex;justify-content:space-between;padding:16px 0 12px;border-bottom:2px solid #e6ece9;font:800 22px Inter;letter-spacing:2px;color:#5d7a70}}
+    .hd span{{width:390px}} .hd span:last-child{{color:#3f7a14}}
+    .r{{display:flex;align-items:center;justify-content:space-between;height:98px;border-bottom:2px solid #eef2f0}}
     .r:last-child{{border-bottom:0}}
-    .pb{{display:flex;align-items:center;gap:20px;width:330px}}
-    .pb span{{font:700 30px/1.2 Inter;color:#0F2D27}}
-    .ic{{width:78px;height:78px;border-radius:50%;background:#EAF5D5;display:flex;align-items:center;justify-content:center;flex:none}}
-    .so{{width:330px;height:180px;border-radius:18px;overflow:hidden;box-shadow:0 10px 20px rgba(0,0,0,.18)}}
-    .so img{{width:100%;height:100%;object-position:50% 42%}}
-    .cta{{position:absolute;left:50%;transform:translateX(-50%);top:1118px;background:{lime};border-radius:999px;padding:22px 46px;font:900 32px Inter;color:#0F2D27;white-space:nowrap;box-shadow:0 0 0 6px rgba(198,244,50,.25)}}
+    .av,.ap{{display:flex;align-items:center;gap:14px;width:390px}}
+    .av span{{font:600 25px/1.2 Inter;color:#5d6b66}}
+    .ap span{{font:800 25px/1.2 Inter;color:#0F2D27}}
+    .ic{{width:58px;height:58px;border-radius:50%;background:#EEF2F0;display:flex;align-items:center;justify-content:center;flex:none}}
+    .ck{{width:46px;height:46px;border-radius:50%;background:{lime};display:flex;align-items:center;justify-content:center;flex:none}}
+    .ph{{position:absolute;left:70px;right:70px;top:648px;height:420px;border-radius:26px;overflow:hidden;box-shadow:0 20px 40px rgba(0,0,0,.35)}}
+    .ph img{{width:100%;height:100%}}
+    .cta{{position:absolute;left:50%;transform:translateX(-50%);top:1094px;background:{lime};border-radius:999px;padding:20px 46px;font:900 30px Inter;color:#0F2D27;white-space:nowrap;box-shadow:0 0 0 6px rgba(198,244,50,.25)}}
     .f{{position:absolute;bottom:52px;width:100%;display:flex;justify-content:center}}
     """
     body = f'''{header('white', 40)}
-        <div class="h">Besoin d’un tableau<br>de bord moderne ?</div>
-    <div class="tb"><div class="hd"><span>PROBLÈME</span><span>SOLUTION</span></div>{tr}</div>
+    <div class="h">Avant / Après</div>
+    <div class="s">avec un écran CarPlay &amp; Android Auto sans fil</div>
+    <div class="tb"><div class="hd"><span>AVANT</span><span>APRÈS</span></div>{tr}</div>
+    <div class="ph"><img class="shot" src="{photo(0)}" {focus(0)}>{chip()}</div>
     <div class="cta">VÉRIFIER MA COMPATIBILITÉ</div>
     <div class="f">{badge('light', 25)}</div>
     '''
@@ -800,28 +803,28 @@ def ad24_ticket():
     li = "".join(f'<div class="ln"><span>{a}</span><i></i><span>{b}</span></div>' for a, b in lines)
     edge = "".join(f"{i*20},0 {i*20+10},12 " for i in range(30))
     css = """
-    .bgimg{position:absolute;left:0;top:0;width:100%;height:100%}
-    .ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.62) 0%,rgba(0,0,0,.22) 9%,rgba(0,0,0,.05) 16%,rgba(0,0,0,.1) 50%,rgba(0,0,0,.85) 74%,rgba(0,0,0,.95) 100%)}
-    .rc{position:absolute;left:64px;top:146px;width:480px;background:#fbfbf8;transform:rotate(-3deg);box-shadow:0 26px 40px rgba(0,0,0,.45);padding:34px 34px 30px;font-family:'JetBrains Mono';color:#1b1b1b}
+    .ad{background:#0B0B0C}
+    .bk{position:absolute;inset:-60px;width:calc(100% + 120px);height:calc(100% + 120px);filter:blur(34px) brightness(.32);object-fit:cover}
+    .rc{position:absolute;left:300px;top:118px;width:480px;background:#fbfbf8;transform:rotate(-3deg);box-shadow:0 26px 40px rgba(0,0,0,.45);padding:30px 34px 26px;font-family:'JetBrains Mono';color:#1b1b1b}
     .rc:after{content:"";position:absolute;left:0;right:0;bottom:-11px;height:12px;background:linear-gradient(-45deg,transparent 8px,#fbfbf8 0) 0 0/16px 12px,linear-gradient(45deg,transparent 8px,#fbfbf8 0) 0 0/16px 12px}
     .rc h5{font:800 26px 'JetBrains Mono';text-align:center;letter-spacing:1px}
     .rc .sub{font:500 18px 'JetBrains Mono';text-align:center;color:#555;margin-top:4px}
-    .hr{border-top:2px dashed #999;margin:16px 0}
-    .ln{display:flex;align-items:baseline;gap:8px;font:500 21px 'JetBrains Mono';margin:9px 0}
+    .hr{border-top:2px dashed #999;margin:14px 0}
+    .ln{display:flex;align-items:baseline;gap:8px;font:500 21px 'JetBrains Mono';margin:7px 0}
     .ln i{flex:1;border-bottom:2px dotted #999;transform:translateY(-5px)}
     .tt{display:flex;justify-content:space-between;font:800 23px 'JetBrains Mono'}
-    .th{font:500 17px 'JetBrains Mono';text-align:center;color:#666;margin-top:12px}
-    .t1{position:absolute;left:60px;right:60px;top:1000px;text-align:center;font:900 38px Inter;color:#fff;letter-spacing:.5px}
-    .t2{position:absolute;left:60px;right:60px;top:1052px;text-align:center;font:800 40px Inter;color:#FFB020;letter-spacing:-.5px}
-    .t3{position:absolute;left:60px;right:60px;top:1112px;text-align:center;font:500 26px Inter;color:#ddd}
-    .f{position:absolute;bottom:50px;left:60px;right:60px;display:flex;justify-content:flex-end;align-items:center}
+    .ph{position:absolute;left:64px;right:64px;top:640px;height:420px;border-radius:26px;overflow:hidden;box-shadow:0 24px 50px rgba(0,0,0,.55)}
+    .ph img{width:100%;height:100%}
+    .t1{position:absolute;left:60px;right:60px;top:1084px;text-align:center;font:900 36px Inter;color:#fff;letter-spacing:.5px}
+    .t2{position:absolute;left:60px;right:60px;top:1134px;text-align:center;font:800 40px Inter;color:#FFB020;letter-spacing:-.5px}
+    .t3{position:absolute;left:60px;right:60px;top:1192px;text-align:center;font:500 26px Inter;color:#ddd}
+    .f{position:absolute;bottom:40px;left:60px;right:60px;display:flex;justify-content:center;align-items:center}
     """
-    body = f'''{header('white', 40)}
-    <img class="shot bgimg" src="{photo(0)}" {focus(0, 0.62, 0.4)}><div class="ov"></div>{chip("left:auto;right:40px;bottom:auto;top:900px")}
+    body = f'''<img class="bk" src="{photo(0)}">{header('white', 40)}
     <div class="rc"><h5 class="fit" style="white-space:nowrap">VOTRE {V("name").upper()}</h5><div class="sub">Équipement d’origine</div>
       <div class="hr"></div>{li}<div class="hr"></div>
-      <div class="tt"><span>TOTAL</span><span>BLOQUÉ EN 2009</span></div>
-      <div class="th">Merci de votre visite</div></div>
+      <div class="tt"><span>TOTAL</span><span>BLOQUÉ EN {V("start") or 2009}</span></div></div>
+    <div class="ph"><img class="shot" src="{photo(0)}" {focus(0)}>{chip()}</div>
     <div class="t1">CE QUI MANQUE SUR CE TICKET :</div>
     <div class="t2">CarPlay, Android Auto, GPS, écran HD</div>
     <div class="t3">Spark Auto ajoute tout ça, à la place de l’autoradio d’origine.</div>
@@ -841,14 +844,14 @@ def ad25_promo():
     .b2{position:absolute;left:50%;transform:translateX(-50%) rotate(-1.5deg);top:236px;background:#FF5B1F;color:#fff;font:400 82px/1 Anton;letter-spacing:1px;padding:10px 30px;white-space:nowrap}
     .ph{position:absolute;left:0;right:0;top:362px;height:628px;overflow:hidden}
     .ph img{width:100%;height:100%;object-position:50% 46%}
-    .ph:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,0) 22%,rgba(0,0,0,0) 70%,rgba(0,0,0,.75))}
+    .ph:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,0) 20%,rgba(0,0,0,0) 85%,rgba(0,0,0,.75))}
     .c{position:absolute;font:800 32px Inter;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.8);letter-spacing:-.3px}
     .code{position:absolute;top:1018px;width:100%;text-align:center;font:400 104px/1 Anton;color:#FF5B1F;letter-spacing:2px}
     .sub{position:absolute;top:1132px;width:100%;text-align:center;font:600 30px Inter;color:#fff}
     .f{position:absolute;bottom:46px;left:60px;right:60px;display:flex;justify-content:flex-end;align-items:center}
     """
     body = f'''{header('white', 40)}
-    <div class="ph"><img class="shot" src="{photo(0)}" {focus(0)}>{chip("left:auto;right:50px;bottom:auto;top:76px")}</div>
+    <div class="ph"><img class="shot" src="{photo(0)}" {focus(0, safe=(124, 0, 80, 0))}>{chip("left:auto;right:50px;bottom:auto;top:76px")}</div>
     <div class="b1 fit" style="max-width:1000px">{P("title")}</div>
     <div class="b2 fit" style="max-width:1020px">{P("headline")}</div>
     <div class="c" style="left:50px;top:382px">CarPlay sans fil</div>
@@ -867,7 +870,7 @@ def ad26_commande():
     lime = "#C6F432"
     items = ["CarPlay &amp; Android Auto sans fil", "Waze, Google Maps et Plans en grand", "Spotify, Deezer, YouTube à l’écran",
              "Appels Bluetooth mains libres", "Commandes au volant conservées*", "Caméra de recul compatible",
-             "Plus de téléphone dans la grille d’aération"]
+             "Fini le téléphone dans la grille d’aération"]
     li = "".join(f'<div class="it"><div class="ck">{icon("check", 24, lime, 3.4)}</div><span>{t}</span></div>' for t in items)
     curve = '<svg style="position:absolute;left:336px;top:206px" width="150" height="110" viewBox="0 0 150 110"><path d="M10 10 C 70 10, 110 40, 120 92" fill="none" stroke="#0B0B0C" stroke-width="4" stroke-linecap="round"/><path d="M104 80 L121 96 L134 76" fill="none" stroke="#0B0B0C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>'
     css = f"""
@@ -902,8 +905,8 @@ def ad26_commande():
 def age_line():
     st = V("start")
     if st:
-        return f"Les {V('short')} de {st},<br>c’est fou."
-    return "Les voitures de 2010,<br>c’est fou."
+        return f"Votre {V('short')}<br>date de {st} ?"
+    return "Votre voiture a<br>plus de 10 ans ?"
 
 
 def evergreen_offer():
