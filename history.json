@@ -1,0 +1,50 @@
+[
+ {
+  "date": "2026-11-18",
+  "slot": 4,
+  "time": "17:00",
+  "mode": "normal",
+  "kind": "static",
+  "template": "3_etapes",
+  "vehicle": "carplay-fiat-punto-2012-2015",
+  "status": "non évalué",
+  "reason": "évaluateur IA indisponible : contrôles automatiques seulement",
+  "score": null,
+  "posts": {
+   "instagram": "6afdb361ea3aea9074f95f35",
+   "tiktok": "6afdb361ea3aea9074f95fab"
+  }
+ },
+ {
+  "date": "2026-11-18",
+  "slot": 5,
+  "time": "19:30",
+  "mode": "normal",
+  "kind": "static",
+  "template": "promo",
+  "vehicle": "carplay-renault-clio-2-2000-2012",
+  "status": "non évalué",
+  "reason": "évaluateur IA indisponible : contrôles automatiques seulement",
+  "score": null,
+  "posts": {
+   "instagram": "6afdb36255bf70e62d579d6d",
+   "tiktok": "6afdb362ea3aea9074f9608d"
+  }
+ },
+ {
+  "date": "2026-11-18",
+  "slot": 6,
+  "time": "21:30",
+  "mode": "normal",
+  "kind": "static",
+  "template": "liste_barree",
+  "vehicle": "carplay-peugeot-208-2012-2018-ecran-tactile-sans-fil",
+  "status": "non évalué",
+  "reason": "évaluateur IA indisponible : contrôles automatiques seulement",
+  "score": null,
+  "posts": {
+   "instagram": "6afdb363a509ab20938b9c52",
+   "tiktok": "6afdb36355bf70e62d579de3"
+  }
+ }
+]
