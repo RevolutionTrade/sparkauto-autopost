@@ -94,5 +94,53 @@
    "instagram": "6aff0848cac0791c5d926d01",
    "tiktok": "6aff0848fd08883b64720c3d"
   }
+ },
+ {
+  "date": "2026-11-20",
+  "slot": 4,
+  "time": "17:00",
+  "mode": "normal",
+  "kind": "static",
+  "template": "c_est_officiel",
+  "vehicle": "carplay-peugeot-2008-2012-2018-ecran-tactile-sans-fil",
+  "status": "non évalué",
+  "reason": "évaluateur IA indisponible : contrôles automatiques seulement",
+  "score": null,
+  "posts": {
+   "instagram": "6b0054997efc64d5e425897c",
+   "tiktok": "6b00549a5d9549971caf86ee"
+  }
+ },
+ {
+  "date": "2026-11-20",
+  "slot": 5,
+  "time": "19:30",
+  "mode": "normal",
+  "kind": "static",
+  "template": "promo",
+  "vehicle": "ecran-carplay-android-mercedes-cla-c117-x117-2013-2019",
+  "status": "non évalué",
+  "reason": "évaluateur IA indisponible : contrôles automatiques seulement",
+  "score": null,
+  "posts": {
+   "instagram": "6b00549a5d9549971caf8738",
+   "tiktok": "6b00549b234b6bb6ee9fed03"
+  }
+ },
+ {
+  "date": "2026-11-20",
+  "slot": 6,
+  "time": "21:30",
+  "mode": "normal",
+  "kind": "static",
+  "template": "affiche",
+  "vehicle": "ecran-carplay-android-audi-q5-2009-2017-ecran-hd-tactile-sans-fil",
+  "status": "non évalué",
+  "reason": "évaluateur IA indisponible : contrôles automatiques seulement",
+  "score": null,
+  "posts": {
+   "instagram": "6b00549b234b6bb6ee9fed4f",
+   "tiktok": "6b00549bfc5b97f0f81004ad"
+  }
  }
 ]
