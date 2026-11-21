@@ -142,5 +142,53 @@
    "instagram": "6b00549b234b6bb6ee9fed4f",
    "tiktok": "6b00549bfc5b97f0f81004ad"
   }
+ },
+ {
+  "date": "2026-11-21",
+  "slot": 4,
+  "time": "17:00",
+  "mode": "normal",
+  "kind": "static",
+  "template": "6_signes",
+  "vehicle": "carplay-mercedes-sprinter-2006-2012",
+  "status": "non évalué",
+  "reason": "évaluateur IA indisponible : contrôles automatiques seulement",
+  "score": null,
+  "posts": {
+   "instagram": "6b019dfbd5eabfb8cc337d95",
+   "tiktok": "6b019dfbd5eabfb8cc337e1f"
+  }
+ },
+ {
+  "date": "2026-11-21",
+  "slot": 5,
+  "time": "19:30",
+  "mode": "normal",
+  "kind": "static",
+  "template": "venn",
+  "vehicle": "carplay-renault-kangoo-2011-2018",
+  "status": "non évalué",
+  "reason": "évaluateur IA indisponible : contrôles automatiques seulement",
+  "score": null,
+  "posts": {
+   "instagram": "6b019dfbd5eabfb8cc337e46",
+   "tiktok": "6b019dfcd5eabfb8cc337e9a"
+  }
+ },
+ {
+  "date": "2026-11-21",
+  "slot": 6,
+  "time": "21:30",
+  "mode": "normal",
+  "kind": "static",
+  "template": "promo",
+  "vehicle": "carplay-peugeot-107-2005-2014-ecran-tactile-sans-fil",
+  "status": "non évalué",
+  "reason": "évaluateur IA indisponible : contrôles automatiques seulement",
+  "score": null,
+  "posts": {
+   "instagram": "6b019dfcd5eabfb8cc337f3e",
+   "tiktok": "6b019dfdbafa993d93516abc"
+  }
  }
 ]
