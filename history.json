@@ -190,5 +190,53 @@
    "instagram": "6b019dfcd5eabfb8cc337f3e",
    "tiktok": "6b019dfdbafa993d93516abc"
   }
+ },
+ {
+  "date": "2026-11-22",
+  "slot": 4,
+  "time": "17:00",
+  "mode": "normal",
+  "kind": "static",
+  "template": "mise_a_jour",
+  "vehicle": "carplay-citroen-c3-ds3-2010-2016-ecran-tactile-sans-fil",
+  "status": "non évalué",
+  "reason": "évaluateur IA indisponible : contrôles automatiques seulement",
+  "score": null,
+  "posts": {
+   "instagram": "6b02edb6846b0ee9078ad164",
+   "tiktok": "6b02edb7d5eabfb8ccae22df"
+  }
+ },
+ {
+  "date": "2026-11-22",
+  "slot": 5,
+  "time": "19:30",
+  "mode": "normal",
+  "kind": "static",
+  "template": "3_raisons",
+  "vehicle": "carplay-opel-astra-h-2005-2014-ecran-tactile-sans-fil",
+  "status": "non évalué",
+  "reason": "évaluateur IA indisponible : contrôles automatiques seulement",
+  "score": null,
+  "posts": {
+   "instagram": "6b02edb7c72676f5e92f63c3",
+   "tiktok": "6b02edb70247969092514de8"
+  }
+ },
+ {
+  "date": "2026-11-22",
+  "slot": 6,
+  "time": "21:30",
+  "mode": "normal",
+  "kind": "static",
+  "template": "promo",
+  "vehicle": "ecran-carplay-android-mercedes-glc-x253-2015-2018",
+  "status": "non évalué",
+  "reason": "évaluateur IA indisponible : contrôles automatiques seulement",
+  "score": null,
+  "posts": {
+   "instagram": "6b02edb8cc364169c1575d3e",
+   "tiktok": "6b02edb8c72676f5e92f6421"
+  }
  }
 ]
