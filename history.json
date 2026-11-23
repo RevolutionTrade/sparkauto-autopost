@@ -238,5 +238,37 @@
    "instagram": "6b02edb8cc364169c1575d3e",
    "tiktok": "6b02edb8c72676f5e92f6421"
   }
+ },
+ {
+  "date": "2026-11-23",
+  "slot": 5,
+  "time": "19:30",
+  "mode": "normal",
+  "kind": "static",
+  "template": "colis",
+  "vehicle": "carplay-nissan-juke-2010-2014-ecran-tactile-sans-fil",
+  "status": "non évalué",
+  "reason": "évaluateur IA indisponible : contrôles automatiques seulement",
+  "score": null,
+  "posts": {
+   "instagram": "6b046582cc150d473b807c57",
+   "tiktok": "6b046583cc150d473b807cde"
+  }
+ },
+ {
+  "date": "2026-11-23",
+  "slot": 6,
+  "time": "21:30",
+  "mode": "normal",
+  "kind": "static",
+  "template": "promo",
+  "vehicle": "carplay-mini-cooper-f56-2015-2019",
+  "status": "non évalué",
+  "reason": "évaluateur IA indisponible : contrôles automatiques seulement",
+  "score": null,
+  "posts": {
+   "instagram": "6b046583a17868cf45be5329",
+   "tiktok": "6b04658382358053926f5a2b"
+  }
  }
 ]
