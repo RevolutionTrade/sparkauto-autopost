@@ -270,5 +270,101 @@
    "instagram": "6b046583a17868cf45be5329",
    "tiktok": "6b04658382358053926f5a2b"
   }
+ },
+ {
+  "date": "2026-11-24",
+  "slot": 1,
+  "time": "08:30",
+  "mode": "normal",
+  "kind": "static",
+  "template": "vrai_match",
+  "vehicle": "ecran-carplay-android-audi-q7-2005-2015-ecran-hd-tactile-sans-fil",
+  "status": "non évalué",
+  "reason": "évaluateur IA indisponible : contrôles automatiques seulement",
+  "score": null,
+  "posts": {
+   "instagram": "6b04de9adb52b449cf113363",
+   "tiktok": "6b04de9bbc151fa8ad0e865a"
+  }
+ },
+ {
+  "date": "2026-11-24",
+  "slot": 2,
+  "time": "11:30",
+  "mode": "normal",
+  "kind": "static",
+  "template": "probleme_solution",
+  "vehicle": "carplay-peugeot-508-sw-2011-2018-ecran-tactile-sans-fil",
+  "status": "non évalué",
+  "reason": "évaluateur IA indisponible : contrôles automatiques seulement",
+  "score": null,
+  "posts": {
+   "instagram": "6b04de9b6734c08a269c0e0d",
+   "tiktok": "6b04de9bdb52b449cf11339f"
+  }
+ },
+ {
+  "date": "2026-11-24",
+  "slot": 3,
+  "time": "13:30",
+  "mode": "normal",
+  "kind": "static",
+  "template": "voitures_de",
+  "vehicle": "carplay-renault-clio-4-2012-2016-ecran-tactile-sans-fil",
+  "status": "non évalué",
+  "reason": "évaluateur IA indisponible : contrôles automatiques seulement",
+  "score": null,
+  "posts": {
+   "instagram": "6b04de9cf0d7b1e0de9c5b7d",
+   "tiktok": "6b04de9c9a4bd32ca3dfbb9e"
+  }
+ },
+ {
+  "date": "2026-11-24",
+  "slot": 4,
+  "time": "17:00",
+  "mode": "normal",
+  "kind": "static",
+  "template": "ce_que_vous_ratez",
+  "vehicle": "carplay-toyota-yaris-3-2012-2017-ecran-tactile-sans-fil",
+  "status": "non évalué",
+  "reason": "évaluateur IA indisponible : contrôles automatiques seulement",
+  "score": null,
+  "posts": {
+   "instagram": "6b04de9cbc151fa8ad0e869f",
+   "tiktok": "6b04de9dc43c1f2f5c763eca"
+  }
+ },
+ {
+  "date": "2026-11-24",
+  "slot": 5,
+  "time": "19:30",
+  "mode": "normal",
+  "kind": "static",
+  "template": "promo",
+  "vehicle": "carplay-citroen-c4-ds4-2012-2016-ecran-tactile-sans-fil",
+  "status": "non évalué",
+  "reason": "évaluateur IA indisponible : contrôles automatiques seulement",
+  "score": null,
+  "posts": {
+   "instagram": "6b04de9ddb52b449cf113428",
+   "tiktok": "6b04de9d6734c08a269c11dc"
+  }
+ },
+ {
+  "date": "2026-11-24",
+  "slot": 6,
+  "time": "21:30",
+  "mode": "normal",
+  "kind": "static",
+  "template": "checklist",
+  "vehicle": "carplay-dacia-sandero-2014-2019-ecran-tactile-sans-fil",
+  "status": "non évalué",
+  "reason": "évaluateur IA indisponible : contrôles automatiques seulement",
+  "score": null,
+  "posts": {
+   "instagram": "6b04de9dc43c1f2f5c763ef0",
+   "tiktok": "6b04de9e9a4bd32ca3dfbbd6"
+  }
  }
 ]
