@@ -366,5 +366,53 @@
    "instagram": "6b04de9dc43c1f2f5c763ef0",
    "tiktok": "6b04de9e9a4bd32ca3dfbbd6"
   }
+ },
+ {
+  "date": "2026-11-25",
+  "slot": 4,
+  "time": "17:00",
+  "mode": "normal",
+  "kind": "static",
+  "template": "feu_rouge",
+  "vehicle": "carplay-citroen-c5-2008-2017-ecran-tactile-sans-fil",
+  "status": "non évalué",
+  "reason": "évaluateur IA indisponible : contrôles automatiques seulement",
+  "score": null,
+  "posts": {
+   "instagram": "6b0702e338db031e268c533b",
+   "tiktok": "6b0702e47865fd0c9154ca90"
+  }
+ },
+ {
+  "date": "2026-11-25",
+  "slot": 5,
+  "time": "19:30",
+  "mode": "normal",
+  "kind": "static",
+  "template": "commandez_obtenez",
+  "vehicle": "carplay-toyota-aygo-2005-2014-ecran-tactile-sans-fil",
+  "status": "non évalué",
+  "reason": "évaluateur IA indisponible : contrôles automatiques seulement",
+  "score": null,
+  "posts": {
+   "instagram": "6b0702e47aa90f117d3d65b9",
+   "tiktok": "6b0702e47aa90f117d3d662a"
+  }
+ },
+ {
+  "date": "2026-11-25",
+  "slot": 6,
+  "time": "21:30",
+  "mode": "normal",
+  "kind": "static",
+  "template": "promo",
+  "vehicle": "carplay-opel-combo-3-2011-2018-ecran-tactile-sans-fil",
+  "status": "non évalué",
+  "reason": "évaluateur IA indisponible : contrôles automatiques seulement",
+  "score": null,
+  "posts": {
+   "instagram": "6b0702e57865fd0c9154caf3",
+   "tiktok": "6b0702e538db031e268c5432"
+  }
  }
 ]
