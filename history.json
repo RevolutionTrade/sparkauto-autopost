@@ -414,5 +414,53 @@
    "instagram": "6b0702e57865fd0c9154caf3",
    "tiktok": "6b0702e538db031e268c5432"
   }
+ },
+ {
+  "date": "2026-11-26",
+  "slot": 4,
+  "time": "17:00",
+  "mode": "normal",
+  "kind": "static",
+  "template": "fausse_vs_vraie",
+  "vehicle": "carplay-mazda-2-2007-2014-ecran-tactile-sans-fil",
+  "status": "non évalué",
+  "reason": "évaluateur IA indisponible : contrôles automatiques seulement",
+  "score": null,
+  "posts": {
+   "instagram": "6b085009028cd9674f9281de",
+   "tiktok": "6b08500a9a040e355776c01d"
+  }
+ },
+ {
+  "date": "2026-11-26",
+  "slot": 5,
+  "time": "19:30",
+  "mode": "normal",
+  "kind": "static",
+  "template": "baissez_un_doigt",
+  "vehicle": "ecran-carplay-android-seat-ibiza-2016-2017-ecran-hd-tactile-sans-fil",
+  "status": "non évalué",
+  "reason": "évaluateur IA indisponible : contrôles automatiques seulement",
+  "score": null,
+  "posts": {
+   "instagram": "6b08500bc2ecfb8532445e28",
+   "tiktok": "6b08500b29e6498b37df7727"
+  }
+ },
+ {
+  "date": "2026-11-26",
+  "slot": 6,
+  "time": "21:30",
+  "mode": "normal",
+  "kind": "static",
+  "template": "promo",
+  "vehicle": "carplay-ecran-android-bmw-serie-3-f30-2011-2019",
+  "status": "non évalué",
+  "reason": "évaluateur IA indisponible : contrôles automatiques seulement",
+  "score": null,
+  "posts": {
+   "instagram": "6b08500c028cd9674f9282fa",
+   "tiktok": "6b08500cc2ecfb8532445edd"
+  }
  }
 ]
