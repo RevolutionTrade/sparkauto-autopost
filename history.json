@@ -510,5 +510,53 @@
    "instagram": "6b099f2832c212878fdf1ed6",
    "tiktok": "6b099f2934d224b14a93f456"
   }
+ },
+ {
+  "date": "2026-11-28",
+  "slot": 4,
+  "time": "17:00",
+  "mode": "normal",
+  "kind": "static",
+  "template": "communique",
+  "vehicle": "carplay-renault-megane-3-2008-2015-ecran-tactile-sans-fil",
+  "status": "non évalué",
+  "reason": "évaluateur IA indisponible : contrôles automatiques seulement",
+  "score": null,
+  "posts": {
+   "instagram": "6b0ae32a0f9559e0ce1b7e67",
+   "tiktok": "6b0ae32b0f9559e0ce1b7ee8"
+  }
+ },
+ {
+  "date": "2026-11-28",
+  "slot": 5,
+  "time": "19:30",
+  "mode": "normal",
+  "kind": "static",
+  "template": "3_etapes",
+  "vehicle": "ecran-carplay-android-alfa-romeo-brera-ecran-hd-tactile-sans-fil",
+  "status": "non évalué",
+  "reason": "évaluateur IA indisponible : contrôles automatiques seulement",
+  "score": null,
+  "posts": {
+   "instagram": "6b0ae32bbe536564e4374146",
+   "tiktok": "6b0ae32cc6d7f1e7224bdcfe"
+  }
+ },
+ {
+  "date": "2026-11-28",
+  "slot": 6,
+  "time": "21:30",
+  "mode": "normal",
+  "kind": "static",
+  "template": "promo",
+  "vehicle": "carplay-peugeot-308-sw-2007-2015-ecran-tactile-sans-fil",
+  "status": "non évalué",
+  "reason": "évaluateur IA indisponible : contrôles automatiques seulement",
+  "score": null,
+  "posts": {
+   "instagram": "6b0ae32cb793a21e71ed67c2",
+   "tiktok": "6b0ae32cc6d7f1e7224bdd71"
+  }
  }
 ]
